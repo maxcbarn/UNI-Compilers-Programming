@@ -1,0 +1,88 @@
+KOTLIN -> MAIN FUNC?
+
+MAIN -> "fun" "main" "(" ")" "{" VARDECL SEQCOMANDOS "}"
+
+------------------------------------------------
+
+VARDECL -> VARDECL "var" TOKEN_id ":" TIPO ";" | vazio --left recursion
+
+------------------------------------------------
+
+VARDECL -> "var" TOKEN_id ":" TIPO ";" VARDECL | vazio
+
+
+TIPO -> "Float" | "Boolean" | "Void"
+
+------------------------------------------------
+
+SEQCOMANDOS -> SEQCOMANDOS COMANDO | vazio -- left recursion
+
+------------------------------------------------
+
+SEQCOMANDOS -> COMANDO SEQCOMANDOS | vazio
+
+------------------------------------------------
+
+COMANDO -> TOKEN_id "=" EXP ";" -- same simble start
+| TOKEN_id "(" LISTAEXP? ")" ";"
+| "if" EXP "{" SEQCOMANDOS "}" ";"
+| "while" EXP "{" SEQCOMANDOS "}" ";"
+| TOKEN_id "=" "readFloat" "(" ")" ";"
+| "return" EXP ";"
+| "print" EXP ";"
+
+------------------------------------------------
+
+COMANDO -> TOKEN_id COMANDOLINHA
+| "if" EXP "{" SEQCOMANDOS "}" ";"
+| "while" EXP "{" SEQCOMANDOS "}" ";"
+| "return" EXP ";"
+| "print" EXP ";"
+COMANDOLINHA -> "(" LISTAEXP? ")" ";" | "=" COMANDOLINHALINHA
+COMANDOLINHALINHA -> EXP ";" | "readFloat" "(" ")" ";"
+
+EXP -> "(" EXP OP EXP ")" | FATOR
+
+------------------------------------------------
+
+FATOR -> TOKEN_id | TOKEN_id "(" LISTAEXP? ")" -- same simble start
+| TOKEN_numliteral | "true" | "false"
+
+------------------------------------------------
+
+FATOR -> TOKEN_id FATORLINHA 
+| TOKEN_numliteral | "true" | "false"
+FATORLINHA -> "(" LISTAEXP? ")" | vazio
+
+
+OP -> "+" | "-" | "*" | "/" | "&&" | "||" | "<" | ">" | "=="
+
+------------------------------------------------
+
+LISTAEXP -> EXP | LISTAEXP "," EXP -- left recursion
+
+------------------------------------------------
+
+LISTAEXP -> EXP LISTAEXPLINHA
+LISTAEXPLINHA -> "," LISTAEXP | vazia
+
+
+------------------------------------------------
+
+FUNC -> FUNC "fun" TOKEN_id "(" LISTAARG? ")" ":" TIPO "{" VARDECL SEQCOMANDOS "}" -- left recursion and same simble start
+| "fun" TOKEN_id "(" LISTAARG? ")" ":" TIPO "{" VARDECL SEQCOMANDOS "}" 
+
+------------------------------------------------
+
+FUNC -> "fun" FUNCLINHA
+FUNCLINHA -> TOKEN_id "(" LISTAARG? ")" ":" TIPO "{" VARDECL SEQCOMANDOS "}" FUNCLINHALINHA
+FUNCLINHALINHA -> FUNC | vazio 
+
+------------------------------------------------
+
+LISTAARG -> TOKEN_id ":" TIPO | LISTAARG "," TOKEN_id ":" TIPO -- left recursion
+
+------------------------------------------------
+
+LISTAARG -> TOKEN_id ":" TIPO LISTAARGLINHA
+LISTAARGLINHA -> "," LISTAARG | vazio 

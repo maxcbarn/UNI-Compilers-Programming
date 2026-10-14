@@ -1,0 +1,41 @@
+KOTLIN -> MAIN FUNC?
+
+MAIN -> "fun" "main" "(" ")" "{" VARDECL SEQCOMANDOS "}"
+
+VARDECL -> "var" TOKEN_id ":" TIPO ";" VARDECL | vazio
+
+TIPO -> "Float" | "Boolean" | "Void"
+
+SEQCOMANDOS -> COMANDO SEQCOMANDOS | vazio
+
+COMANDO -> TOKEN_id COMANDOLINHA
+| "if" EXP "{" SEQCOMANDOS "}" ";"
+| "while" EXP "{" SEQCOMANDOS "}" ";"
+| "return" EXP ";"
+| "print" EXP ";"
+
+COMANDOLINHA -> "(" LISTAEXP? ")" ";" | "=" COMANDOLINHALINHA
+
+COMANDOLINHALINHA -> EXP ";" | "readFloat" "(" ")" ";"
+
+EXP -> "(" EXP OP EXP ")" | FATOR
+
+FATOR -> TOKEN_id FATORLINHA | TOKEN_numliteral | "true" | "false"
+
+FATORLINHA -> "(" LISTAEXP? ")" | vazio
+
+OP -> "+" | "-" | "*" | "/" | "&&" | "||" | "<" | ">" | "=="
+
+LISTAEXP -> EXP LISTAEXPLINHA
+
+LISTAEXPLINHA -> "," LISTAEXP | vazia
+
+FUNC -> "fun" FUNCLINHA
+
+FUNCLINHA -> TOKEN_id "(" LISTAARG? ")" ":" TIPO "{" VARDECL SEQCOMANDOS "}" FUNCLINHALINHA
+
+FUNCLINHALINHA -> FUNC | vazio 
+
+LISTAARG -> TOKEN_id ":" TIPO LISTAARGLINHA
+
+LISTAARGLINHA -> "," LISTAARG | vazio 
