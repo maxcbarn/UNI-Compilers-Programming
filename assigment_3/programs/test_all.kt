@@ -44,3 +44,8 @@ fun main ()
     print float;
     return 1;
 }
+
+fun asd() : Float {
+    boolean1 = true;
+    boolean2 = false;
+}

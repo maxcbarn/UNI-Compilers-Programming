@@ -20,27 +20,32 @@ fun main ()
     float2 = 2.4;
     boolean1 = true;
     boolean2 = false;
-    boolean1 = boolean2 && boolean1;
-    boolean1 = boolean2 || boolean1;
-    boolean1 = boolean2 == boolean1;
-    boolean1 = float1 < float2;
-    boolean1 = float1 > float2;
-    boolean1 = float1 == float2;
-    float = float1 + float2;
-    float = float1 - float2;
-    float = float1 * float2;
-    float = float1 / float2;
+    boolean1 = ( boolean2 && boolean1 );
+    boolean1 = ( boolean2 || boolean1 );
+    boolean1 = ( boolean2 == boolean1 );
+    boolean1 = ( float1 < float2 );
+    boolean1 = ( float1 > float2 );
+    boolean1 = ( float1 == float2 );
+    float = ( float1 + float2 );
+    float = ( float1 - float2 );
+    float = ( float1 * float2 );
+    float = ( float1 / float2 );
     float = readFloat();
-    if boolean1 {
-        while boolean2 {
-            float = float1 + float2;
-        }
-    }
-    if (float1 < float2) {
-        while (float1 < float2) {
-            float = float1 + float2;
-        }
-    }
+    if ( boolean1 == true ) {
+        while ( boolean2 == false ) {
+            float = ( float1 + float2 );
+        };
+    };
+    if ( float1 < float2 ) {
+        while ( float1 < float2 ) {
+            float = ( float1 + float2 );
+        };
+    };
     print float;
-    return;
+    return 1;
+}
+
+fun asd() : Float {
+    boolean1 = true;
+    boolean2 = false;
 }
